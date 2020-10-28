@@ -23,7 +23,7 @@ public class DBSingleton {
     private DBSingleton(){
         try {
             Class.forName("org.hsqldb.jdbcDriver");
-            connection = DriverManager.getConnection("jdbc:hsqldb:mem:memdb");
+            connection = DriverManager.getConnection("jdbc:hsqldb:mem:db", "SA", "");
         } catch (SQLException | ClassNotFoundException e) {
             Log.exception("DB", e);
         }
