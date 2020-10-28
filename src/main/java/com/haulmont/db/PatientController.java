@@ -96,28 +96,4 @@ public class PatientController extends AbstractController <Patient, Long> {
         }
         return list;
     }
-    
-    @Override
-    protected final void init() {
-        try {
-            sendQuery("CREATE TABLE patients (\n" +
-                    "    id BIGINT IDENTITY PRIMARY KEY,\n" +
-                    "    firstname VARCHAR(" + AbstractHuman.FIRST_NAME_LEN + ") NOT NULL,\n" +
-                    "    middlename VARCHAR(" + AbstractHuman.MIDDLE_NAME_LEN +") NOT NULL,\n" +
-                    "    lastname VARCHAR(" + AbstractHuman.LAST_NAME_LEN + ") NOT NULL,\n" +
-                    "    phone VARCHAR(" + Patient.PHONE_LEN + ")\n" +
-                    ");"
-            );
-            sendQuery("INSERT INTO patients (firstname, middlename, lastname, phone)\n" +
-                    "values\n" +
-                    "    ('Ruslan', 'Zamirovich', 'Merdeev', '+71111111111'),\n" +
-                    "    ('Alexey', 'D.', 'Nikolayev', '+72222222222'),\n" +
-                    "    ('Maxim', 'Igorevich','Kornev', '+73333333333')\n" +
-                    "    ;"
-            );
-        }
-        catch (SQLException e) {
-            Log.exception("Patient controller", e);
-        }
-    }
 }

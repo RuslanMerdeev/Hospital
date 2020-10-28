@@ -20,7 +20,6 @@ public abstract class AbstractController <E, K> implements KeyInterface <E, K> {
      */
     AbstractController() {
         db = DBSingleton.getInstance();
-        init();
     }
     
     /**
@@ -57,16 +56,8 @@ public abstract class AbstractController <E, K> implements KeyInterface <E, K> {
      * @throws SQLException 
      */
     protected ResultSet sendQuery(String sql) throws SQLException {
-        Statement statement = db.createStatement();
-        ResultSet rs = statement.executeQuery(sql);
-        statement.close();
-        return rs;
+        return db.query(sql);
     }
-    
-    /**
-     * Initializes table and fills it with default values
-     */
-    protected void init() {}
     
     /**
      * Returns List of Entities from Result Set

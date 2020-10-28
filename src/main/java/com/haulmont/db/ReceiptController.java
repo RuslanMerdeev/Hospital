@@ -183,35 +183,7 @@ public class ReceiptController extends AbstractController <Receipt, Long> {
         }
         return list;
     }
-    
-    @Override
-    protected final void init() {
-        try {
-            sendQuery("CREATE TABLE receipts (\n" +
-                    "    id BIGINT IDENTITY PRIMARY KEY,\n" +
-                    "    description VARCHAR(" + Receipt.DESCRIPTION_LEN + "),\n" +
-                    "    doctorID BIGINT NOT NULL,\n" +
-                    "    patientID BIGINT NOT NULL,\n" +
-                    "    creationDate DATE NOT NULL,\n" +
-                    "    validity INTEGER NOT NULL,\n" +
-                    "    priority INTEGER,\n" +
-                    "    FOREIGN KEY (doctorID) REFERENCES doctors(id) ON DELETE CASCADE,\n" +
-                    "    FOREIGN KEY (patientID) REFERENCES patients(id) ON DELETE CASCADE\n" +
-                    ");"
-            );
-            sendQuery("INSERT INTO receipts (description, doctorID, patientID, creationDate, validity, priority)\n" +
-                    "values\n" +
-                    "    ('use that very useful drug', 0, 2, DATE '2020-10-23', 2, 0),\n" +
-                    "    ('it is cool to use that drug', 0, 1, DATE '2020-10-25', 4, 1),\n" +
-                    "    ('drug drug drug', 1, 0, DATE '2020-10-27', 8, 2)\n" +
-                    "    ;"
-            );
-        }
-        catch (SQLException e) {
-            Log.exception("Receipt controller", e);
-        }
-    }
-    
+       
     /**
      * Adds select parameters from list to get from
      * @param s input string
